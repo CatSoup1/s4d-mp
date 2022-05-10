@@ -63,6 +63,7 @@ const socket = io("https://s4d-test-server.herokuapp.com");
     }
 
 socket.on('recData', function(data) {
+    console.log("recived data fr")
     var parsedXml = Blockly.textToDom(data)
     Blockly.clearWorkspaceAndLoadFromXml(parsedXml, Blockly.Workspace)
 
