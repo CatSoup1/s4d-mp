@@ -50,25 +50,7 @@ import localforage from 'localforage';
 import r from "./requires";
 import swal from "sweetalert2";
 import { io } from "socket.io-client";
-const socket = io("https://s4d-test-server.herokuapp.com");
 
- socket.on('connect', function() {
-     console.log("connected")
-       coords()
-    });
-
-     function coords() {
-         console.log("sending")
-        const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(Blockly.Workspace));
-        socket.emit('sendCoords', xmlContent);
-        requestAnimationFrame(coords)
-    }
-
-socket.on('recData', function(data) {
-    console.log("recived data fr")
-    var parsedXml = Blockly.textToDom(data)
-    Blockly.clearWorkspaceAndLoadFromXml(parsedXml, Blockly.Workspace)
-})
 
 export default {
     name: "navbar",
@@ -99,6 +81,25 @@ export default {
         element.spellcheck = false;
         element.focus(); 
         element.blur();
+        const socket = io("https://s4d-test-server.herokuapp.com");
+
+ socket.on('connect', function() {
+     console.log("connected")
+       coords()
+    });
+
+     function coords() {
+         console.log("sending")
+         const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
+        socket.emit('sendCoords', xmlContent);
+        requestAnimationFrame(coords)
+    }
+
+socket.on('recData', function(data) {
+    console.log("recived data fr")
+    var parsedXml = Blockly.textToDom(data)
+    Blockly.clearWorkspaceAndLoadFromXml(parsedXml, Blockly.Workspace)
+})
     },
     methods: {
         exportToCode(){
