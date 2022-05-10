@@ -90,8 +90,9 @@ export default {
 
      function coords() {
          console.log("sending")
-         const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.$store.state.workspace));
-        socket.emit('sendCoords', xmlContent);
+         var xmlDom = Blockly.Xml.workspaceToDom(Blockly.Workspace);
+      var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+        socket.emit('sendCoords', xmlText);
         requestAnimationFrame(coords)
     }
 
