@@ -97,7 +97,7 @@ export default {
     }
 
 socket.on('recData', function(data) {
-    console.log("recived data fr")
+    console.log(data)
     var parsedXml = Blockly.textToDom(data)
     Blockly.clearWorkspaceAndLoadFromXml(parsedXml, Blockly.mainWorkspace)
 })
