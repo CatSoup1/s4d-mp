@@ -60,7 +60,7 @@ const socket = io("https://s4d-test-server.herokuapp.com");
      function coords() {
          console.log("sending")
         const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(Blockly.Workspace));
-        socket.emit('coords', xmlContent);
+        socket.emit('sendCoords', xmlContent);
         requestAnimationFrame(coords)
     }
 
