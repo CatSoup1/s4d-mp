@@ -65,6 +65,7 @@ const socket = io("https://Uptime-checker.xl83yt.repl.co");
 socket.on('recData', function(data) {
     parsedXml = Blockly.textToDom(data)
     Blockly.clearWorkspaceAndLoadFromXml(parsedXml, Blockly.Workspace)
+
 })
 
 export default {
