@@ -50,7 +50,7 @@ import localforage from 'localforage';
 import r from "./requires";
 import swal from "sweetalert2";
 import { io } from "socket.io-client";
-const socket = io("https://Uptime-checker.xl83yt.repl.co");
+const socket = io("https://s4d-test-server.herokuapp.com");
 
  socket.on('connect', function() {
        coords()
