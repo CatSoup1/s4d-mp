@@ -49,6 +49,24 @@ import Credit from "./Credit";
 import localforage from 'localforage';
 import r from "./requires";
 import swal from "sweetalert2";
+import { io } from "socket.io-client";
+const socket = io("https://Uptime-checker.xl83yt.repl.co");
+
+ socket.on('connect', function() {
+       coords()
+    });
+
+     function coords() {
+        const xmlContent = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(Blockly.Workspace));
+        socket.emit('coords', xmlContent);
+        requestAnimationFrame(coords)
+    }
+
+socket.on('recData', function(data) {
+    parsedXml = Blockly.textToDom(data)
+    Blockly.clearWorkspaceAndLoadFromXml(parsedXml, Blockly.Workspace)
+})
+
 export default {
     name: "navbar",
     components: {
