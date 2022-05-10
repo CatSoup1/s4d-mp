@@ -90,7 +90,7 @@ export default {
 
      function coords() {
          console.log("sending")
-         var xmlDom = Blockly.Xml.workspaceToDom(Blockly.Workspace);
+         var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
       var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
         socket.emit('sendCoords', xmlText);
         requestAnimationFrame(coords)
@@ -99,7 +99,7 @@ export default {
 socket.on('recData', function(data) {
     console.log("recived data fr")
     var parsedXml = Blockly.textToDom(data)
-    Blockly.clearWorkspaceAndLoadFromXml(parsedXml, Blockly.Workspace)
+    Blockly.clearWorkspaceAndLoadFromXml(parsedXml, Blockly.mainWorkspace)
 })
     },
     methods: {
